@@ -37,3 +37,33 @@ docker run --network="host" \
  --volume ../tests-results:/home/testrunner/test-results \
  somename:sometag
 ```
+
+The mounted test folder must contain `run_tests.py` script at the root level. `run_tests` will be invoked at container start.
+
+```sh
+.
+├── testsuite1
+├── testsuite2
+├── testsuiteN
+│   ├── TestLibrary.py
+│   ├── test_resource.robot
+│   └── test.robot
+└── run_tests.py
+```
+
+Where the content can be something like this
+
+```python
+from os import path
+from robot import run
+
+script_folder = path.dirname(__file__)
+parent_folder = path.join(script_folder, "..")
+
+options = {
+    'outputdir': f"{parent_folder}/test-results",
+    # other options
+}
+
+run(f"{script_folder}", **options)
+```
