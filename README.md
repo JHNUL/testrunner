@@ -34,7 +34,7 @@ Running the container requires the following options passed to `docker run`
 # For example
 docker run --network="host" \
  --volume ./tests:/home/testrunner/tests \
- --volume ../tests-results:/home/testrunner/test-results \
+ --volume ./test-results:/home/testrunner/test-results \
  somename:sometag
 ```
 
@@ -54,6 +54,8 @@ The mounted test folder must contain `run_tests.py` script at the root level. `r
 Where the content can be something like this
 
 ```python
+# run_tests.py
+
 from os import path
 from robot import run
 
