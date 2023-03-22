@@ -67,5 +67,8 @@ options = {
     # other options
 }
 
-run(f"{script_folder}", **options)
+exit_code = run(f"{script_folder}", **options)
+# If you want the process to report non-zero
+# exit code on failed tests.
+exit(exit_code)
 ```
