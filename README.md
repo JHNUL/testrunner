@@ -9,6 +9,7 @@ Current versions of main dependencies are:
 - Python 3.9.2
 - robotframework 6.0.2
 - robotframework-seleniumlibrary 6.0.0
+- robotframework-requests==0.9.4
 
 ## Instructions for running locally
 
