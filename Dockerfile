@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian@sha256:b29ef9073dba7475c4eb37e071b4e92e3409cb25988faa566db12942be2b741e
 
 WORKDIR /browser
 
@@ -12,6 +12,7 @@ RUN ./init.sh && \
   ./get_chromedriver.sh && \
   apt-get remove -y curl unzip && \
   apt-get clean && \
+  apt-get autoremove && \
   rm ./*sh
 
 RUN useradd -ms /bin/bash testrunner
