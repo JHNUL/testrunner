@@ -4,8 +4,8 @@ Image for running RF tests from docker container. Only has Chrome browser and dr
 
 Current versions of main dependencies are:
 
-- Chrome 113.0.5672.126
-- Chromedriver 113.0.5672.63
+- Chrome 114.0.5735.90
+- Chromedriver 114.0.5735.90
 - Python 3.9.2
 - robotframework 6.0.2
 - robotframework-seleniumlibrary 6.0.0
