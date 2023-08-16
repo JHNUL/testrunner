@@ -10,9 +10,9 @@ COPY ./get_chrome.sh \
 RUN ./init.sh && \
   ./get_chrome.sh && \
   ./get_chromedriver.sh && \
-  apt-get remove -y curl unzip && \
+  apt-get remove -y curl unzip jq && \
   apt-get clean && \
-  apt-get autoremove && \
+  apt-get autoremove -y && \
   rm ./*sh
 
 RUN useradd -ms /bin/bash testrunner

@@ -7,19 +7,16 @@
 #
 ##############################################
 
-LATEST_DRIVER=$(curl https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+CHROMEDIVER_INFO_URL="https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json"
 
-VERSION_READABLE=$(echo "$LATEST_DRIVER" | sed 's/\./_/g')
+URL=$(curl -s "$CHROMEDIVER_INFO_URL" | jq -r '.channels.Stable.downloads.chromedriver[] | select(.platform == "linux64").url')
 
-URL="https://chromedriver.storage.googleapis.com/$LATEST_DRIVER/chromedriver_linux64.zip"
+mkdir -p /browser
 
-mkdir -p /browser/$VERSION_READABLE
-FOLDER=/browser/$VERSION_READABLE
+curl -s $URL -o /browser/driver.zip
 
-curl $URL -o $FOLDER/$VERSION_READABLE.zip
+unzip -q /browser/driver.zip -d /browser
 
-unzip $FOLDER/$VERSION_READABLE.zip -d $FOLDER
+rm -r /browser/driver.zip
 
-rm -r $FOLDER/$VERSION_READABLE.zip
-
-ln -sf $FOLDER/chromedriver /usr/local/bin/chromedriver
+ln -sf /browser/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
