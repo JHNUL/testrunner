@@ -8,7 +8,7 @@
 #
 ##############################################
 
-CHROME_VERSION=$(wget -qO- https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb | dpkg --info - | grep Version)
+CHROME_VERSION=$(wget -qO- https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb | dpkg --info - | grep Version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')
 CHROME_VERSION_NO=$(grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' <<< "$CHROME_VERSION")
 CHROME_MAJOR_VERSION=$(echo "$CHROME_VERSION_NO" | cut -d '.' -f 1)
 
@@ -24,6 +24,6 @@ else
     exit 1
 fi
 
-VERSION=$(cat versions.txt | tail -n 1)
+VERSION=$(tail versions.txt -n 1)
 
 docker build . -t test-runner:$VERSION
