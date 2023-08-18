@@ -13,10 +13,10 @@ Current versions of main dependencies are:
 
 ## Instructions for running locally
 
-Building the container:
+The build script checks that there is a Chrome browser (deb package) and a Chromedriver whose major versions match and then builds the container image tagging it with the latest version number found in `versions.txt`.
 
 ```sh
-docker build . --tag somename:sometag
+./build.sh
 ```
 
 Running the container requires the following options passed to `docker run`
